@@ -1,5 +1,4 @@
 const { execSync } = require('child_process');
-const core = require('@actions/core');
 const fs = require('fs');
 
 function installDependencies() {
@@ -60,11 +59,11 @@ function analyzeResults(filePath, maxAverageResponseTime, maxErrorRate) {
 }
 
 try {
+    main();
+    const core = require('@actions/core');
     const filePath = core.getInput('file_path');
     const maxAverageResponseTime = parseFloat(core.getInput('max_average_response_time'));
     const maxErrorRate = parseFloat(core.getInput('max_error_rate'));
-
-    main();
     
     analyzeResults(filePath, maxAverageResponseTime, maxErrorRate);
 } catch (error) {
