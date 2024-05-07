@@ -1,23 +1,16 @@
-const fs = require('fs');
-const parse = require('csv-parse');
-const core = require('@actions/core');
 const { execSync } = require('child_process');
+const core = require('@actions/core');
+const fs = require('fs');
 
-// Function to install Node.js dependencies
 function installDependencies() {
     console.log('Installing dependencies...');
     execSync('npm install', { stdio: 'inherit' });
 }
 
-// Main function to handle action logic
 function main() {
     try {
-        // Install dependencies first
         installDependencies();
-
-        // Your action's existing code...
         console.log('Running action...');
-        // [Rest of your action code]
     } catch (error) {
         console.error(`Error executing action: ${error.message}`);
         process.exit(1);
@@ -25,6 +18,7 @@ function main() {
 }
 
 function analyzeResults(filePath, maxAverageResponseTime, maxErrorRate) {
+    const parse = require('csv-parse');
     const parser = fs.createReadStream(filePath)
         .pipe(parse({
             columns: true,
@@ -71,6 +65,7 @@ try {
     const maxErrorRate = parseFloat(core.getInput('max_error_rate'));
 
     main();
+    
     analyzeResults(filePath, maxAverageResponseTime, maxErrorRate);
 } catch (error) {
     core.setFailed(error.message);
