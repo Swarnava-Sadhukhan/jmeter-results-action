@@ -1,0 +1,15 @@
+name: 'Analyze JMeter Results'
+description: 'Analyzes JMeter jtl results against benchmarks'
+inputs:
+  file_path:
+    description: 'Path to the JMeter jtl results file'
+    required: true
+  max_average_response_time:
+    description: 'Maximum average response time in ms'
+    required: true
+  max_error_rate:
+    description: 'Maximum error rate'
+    required: true
+runs:
+  using: 'node12'
+  main: 'index.js'
