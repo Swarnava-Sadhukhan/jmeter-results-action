@@ -3,7 +3,8 @@ const fs = require('fs');
 
 function installDependencies() {
     console.log('Installing dependencies...');
-    execSync('npm install', { stdio: 'inherit' });
+    execSync('npm init -y', { stdio: 'inherit' });
+    execSync('npm i csv-parse @actions/core', { stdio: 'inherit' });
 }
 
 function main() {
