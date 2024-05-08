@@ -37,6 +37,7 @@ function analyzeResults(filePath, maxAverageResponseTime, maxErrorRate) {
 
     parser.on('data', (row) => {
         if (!row.responseMessage.includes("Number of samples in transaction") && !row.label.includes("Debug Sampler")) {
+            console.log(`${row.label} -> ${row.elapsed}ms`);
             totalSamples++;
             totalResponseTime += parseInt(row.elapsed, 10);
             if (row.success.trim().toLowerCase() === 'false') {
