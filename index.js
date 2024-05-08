@@ -2,10 +2,15 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 
 function installDependencies() {
+    const actionDir = __dirname; 
     console.log('Installing dependencies...');
-    execSync(`cd ${__dirname}`, { stdio: 'inherit' });
-    console.log(__dirname + "is the current directory");
-    execSync('npm i', { stdio: 'inherit' });
+    try {
+        process.chdir(actionDir);  // Change to the directory of the action script
+        console.log(`Current directory: ${process.cwd()}`);
+        execSync('npm install', { stdio: 'inherit' });
+    } catch (error) {
+        core.setFailed(`Dependency installation failed: ${error}`);
+    }
 }
 
 function main() {
