@@ -61,8 +61,10 @@ function analyzeResults(filePath, maxAverageResponseTime, maxErrorRate) {
         if (averageResponseTime > maxAverageResponseTime || errorRate > maxErrorRate) {
             core.setFailed("Performance benchmarks not met.");
         } else {
-            core.info("Average Response Time", `${averageResponseTime} ms`);
-            core.info("Error Rate", `${errorRate * 100}%`);
+            console.log(`Average Response Time is ${averageResponseTime} ms`);
+            console.log(`Error Rate is ${errorRate * 100}%`);
+            console.log(averageResponseTime);
+            console.log(errorRate);
             core.info("Performance benchmarks met.");
         }
     });
