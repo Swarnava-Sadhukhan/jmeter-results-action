@@ -3,8 +3,9 @@ const fs = require('fs');
 
 function installDependencies() {
     console.log('Installing dependencies...');
-    execSync('npm init -y', { stdio: 'inherit' });
-    execSync('npm i csv-parse @actions/core', { stdio: 'inherit' });
+    execSync(`cd ${__dirname}`, { stdio: 'inherit' });
+    console.log(__dirname + "is the current directory");
+    execSync('npm i', { stdio: 'inherit' });
 }
 
 function main() {
