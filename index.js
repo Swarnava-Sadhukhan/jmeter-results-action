@@ -53,6 +53,7 @@ function analyzeResults(filePath, maxAverageResponseTime, maxErrorRate) {
 
         const averageResponseTime = totalResponseTime / totalSamples;
         const errorRate = failedSamples / totalSamples;
+        const core = require('@actions/core');
 
         core.setOutput("Average Response Time", `${averageResponseTime} ms`);
         core.setOutput("Error Rate", `${errorRate * 100}%`);
